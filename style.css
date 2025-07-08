@@ -1,0 +1,488 @@
+/* ===== CSS RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== VARIABLES ===== */
+:root {
+  --offwhite: #FAF9F6;
+  --black: #0F0F0F;
+  --pink: #F15BB5;
+}
+
+/* ===== BASE ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--offwhite);
+  color: var(--black);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--black);
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--pink);
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.hero h2,
+#typed-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.hero-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* Hero content box */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content .cta-btn {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: var(--pink);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-content .cta-btn:hover {
+  background-color: #e91e63;
+}
+
+/* ===== SLIDESHOW ===== */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: fadeSlideshow 12s infinite;
+}
+
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 4s; }
+.slide:nth-child(3) { animation-delay: 8s; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@keyframes fadeSlideshow {
+  0%, 40%, 100% { opacity: 0; }
+  10%, 30% { opacity: 1; }
+}
+
+/* ===== SECTION BASE ===== */
+section {
+  margin-top: 60px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== ABOUT ===== */
+.about {
+  padding: 30px 20px;
+}
+
+.about h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--black);
+}
+
+.about p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ===== COURSES GRID ===== */
+.course-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.course-card {
+  flex: 1 1 300px;
+  background-color: var(--offwhite);
+  border: 2px solid var(--pink);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.course-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.course-card .btn,
+.course-card button {
+  background-color: var(--pink);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.course-card .btn:hover,
+.course-card button:hover {
+  background-color: #e0459d;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== COURSE DETAIL ===== */
+.course-detail {
+  max-width: 800px;
+  margin: 100px auto 50px;
+  padding: 20px;
+}
+
+.course-detail h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.course-detail .subtitle {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.course-info p {
+  font-size: 1.05rem;
+  margin-bottom: 15px;
+}
+
+.enroll-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-form,
+.form-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-form h2,
+.form-container h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#form-status {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Contact Button */
+.contact-form button {
+  padding: 12px;
+  background-color: var(--pink);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #e91e63;
+}
+
+/* ===== CAREERS ===== */
+.career-page {
+  max-width: 1000px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fffafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.career-page h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.career-page .subtitle {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.career-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 40px;
+  max-width: 800px;
+  text-align: left;
+}
+
+.job-list li {
+  background-color: #fff0f5;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 6px solid #ff5ca2;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.job-list li strong {
+  font-size: 1.2rem;
+}
+
+.job-list li a.btn {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.career-content .note {
+  font-size: 0.95rem;
+  margin-top: 20px;
+  color: #444;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-block;
+  background-color: var(--pink);
+  color: white;
+  padding: 10px 22px;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #e84c91;
+  transform: scale(1.05);
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 55px;
+  height: 55px;
+}
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img:hover {
+  transform: scale(1.1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: 80px;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 2px solid var(--black);
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-img {
+    max-height: 250px;
+  }
+
+  section {
+    padding: 15px;
+  }
+}
+
+/* ===== NAVBAR & HAMBURGER ===== */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--black);
+}
+
+#nav-menu {
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--offwhite);
+    padding: 10px 0;
+    border-top: 2px solid #ccc;
+  }
+
+  #nav-menu.active {
+    display: flex;
+  }
+
+  #main-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #main-header h1 {
+    margin-bottom: 10px;
+  }
+
+  #nav-menu a {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: left;
+  }
+}

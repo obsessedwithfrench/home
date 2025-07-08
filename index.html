@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obsessed with French</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2c7cbf6b8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header id="main-header">
+  <h1>Obsessed with French</h1>
+
+  <div class="hamburger" id="hamburger">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <nav id="nav-menu">
+    <a href="index.html#home">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="index.html#about">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="career.html">Careers</a>
+  </nav>
+</header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+
+    <!--image slide show-->
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="image.src/hero1.webp" alt="Hero 1" />
+      </div>
+      <div class="slide fade">
+        <img src="image.src/hero2.webp" alt="Hero 2" />
+      </div>
+      <div class="slide fade">
+        <img src="image.src/hero3.webp" alt="Hero 3" />
+      </div>
+
+      <!--typed animation and text below it-->
+      <div class="hero-content">
+        <h1><span id="typed-text"></span></h1>
+        <h2>Fall in love with the French language</h2>
+        <p>Join the journey of mastering the French language.</p>
+      </div>
+  </section>
+
+  <!--Code for typing animation-->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed("#typed-text", {
+      strings: [
+        "Obsessed with French.",
+        "Obsédé par le français.",
+      ],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 1800,
+      loop: true
+    });
+  </script>
+
+
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h3>About Obsessed with French</h3>
+    <p>
+      "Obsessed with French" is more than just a language class – it's a journey into the heart of French culture,
+      conversation, and confidence.
+      Whether you're a beginner or brushing up your skills, our classes are designed to be fun, interactive, and
+      tailored to your goals.
+    </p>
+    <p>
+      Led by passionate instructors, our mission is to help you not just learn French – but love it.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Obsessed with French. All rights reserved.</p>
+  </footer>
+
+  <!--Whatsapp details-->
+  <a href="https://wa.me/+919518547874" class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="image.src/mainpic.png" alt="WhatsApp" />
+  </a>
+
+  <script>
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+
+</html>

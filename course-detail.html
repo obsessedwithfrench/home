@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Details | Obsessed with French</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2c7cbf6b8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header id="main-header">
+    <h1>Obsessed with French</h1>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav id="nav-menu">
+      <a href="index.html#home">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="career.html">Careers</a>
+    </nav>
+  </header>
+
+  <section class="course-detail">
+    <h2 id="courseTitle">Loading...</h2>
+    <p class="subtitle" id="courseSubtitle"></p>
+
+    <div class="course-info">
+      <p><strong>Mode:</strong> <span id="courseMode"></span></p>
+      <p><strong>Duration:</strong> <span id="courseDuration"></span></p>
+      <p><strong>Price:</strong> <span id="coursePrice"></span></p>
+      <p><strong>Description:</strong></p>
+      <p id="courseDescription"></p>
+    </div>
+
+    <div class="enroll-btn">
+      <a href="https://forms.gle/YOUR_GOOGLE_FORM" class="btn" target="_blank" rel="noopener">Enroll via Google Form</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Obsessed with French. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const courseCode = queryParams.get("course");
+
+    const courseDetails = JSON.parse(localStorage.getItem("courseDetails")) || {};
+    const course = courseDetails[courseCode];
+
+    if (course) {
+      document.getElementById("courseTitle").textContent = course.title || courseCode;
+      document.getElementById("courseSubtitle").textContent = course.subtitle || "";
+      document.getElementById("courseMode").textContent = course.mode || "";
+      document.getElementById("courseDuration").textContent = course.duration || "";
+      document.getElementById("coursePrice").textContent = course.price || "";
+      document.getElementById("courseDescription").textContent = course.description || "";
+    } else {
+      document.getElementById("courseTitle").textContent = "Course Not Found";
+      document.getElementById("courseDescription").textContent = "We couldn't find the course you're looking for. Please go back to the courses page.";
+      document.querySelector(".course-info").style.display = "none";
+      document.querySelector(".enroll-btn").style.display = "none";
+    }
+  </script>
+</body>
+</html>

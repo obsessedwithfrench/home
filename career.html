@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | Obsessed with French</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2c7cbf6b8.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+  <header id="main-header">
+    <h1>Obsessed with French</h1>
+
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="nav-menu">
+      <a href="index.html#home">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="career.html">Careers</a>
+    </nav>
+  </header>
+
+  <section class="career-page">
+    <h2>Work With Us</h2>
+    <p class="subtitle">Join our passionate team and help spread the love for the French language and culture.</p>
+
+    <div class="career-content">
+      <h3>Current Openings</h3>
+      <ul id="jobList" class="job-list"></ul>
+
+      <p class="note">Don't see a role that fits? You can still share your interest with us at 
+        <a href="career-apply.html">this form</a> or email 
+        <a href="mailto:hello@obsessedwithfrench.com">hello@obsessedwithfrench.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Obsessed with French. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Load job listings from localStorage
+    const jobList = document.getElementById("jobList");
+    const jobs = JSON.parse(localStorage.getItem("jobs")) || [
+      "French Language Trainer (Part-Time)",
+      "Marketing & Social Media Intern"
+    ];
+
+    jobs.forEach((job, index) => {
+      const delay = index * 100;
+      const html = `
+        <li data-aos="fade-up" data-aos-delay="${delay}">
+          <strong><i class="fas fa-briefcase"></i> ${job}</strong><br>
+          Location: Remote / Nagpur<br>
+          <a href="career-apply.html" class="btn">Apply via Form</a>
+        </li>
+      `;
+      jobList.innerHTML += html;
+    });
+  </script>
+
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses | Obsessed with French</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2c7cbf6b8.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header id="main-header">
+    <h1>Obsessed with French</h1>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav id="nav-menu">
+      <a href="index.html#home">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="career.html">Careers</a>
+    </nav>
+  </header>
+
+  <section class="courses-page" id="courses">
+    <h2>Our French Courses</h2>
+    <p class="subtitle">All courses are structured and CEFR-aligned. Choose your level and get started!</p>
+
+    <div class="course-grid" id="courseGrid"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Obsessed with French. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    const courseGrid = document.getElementById("courseGrid");
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    const courseDetails = JSON.parse(localStorage.getItem("courseDetails")) || {};
+
+    courses.forEach((course, index) => {
+      const code = course.split(' ')[0];
+      const delay = index * 100;
+      const detail = courseDetails[code] || {};
+
+      const html = `
+        <div class="course-card" data-aos="fade-up" data-aos-delay="${delay}">
+          <h4><i class="fas fa-language"></i> ${course}</h4>
+          <p>${detail.description || 'Learn and grow your French language skills with this structured course.'}</p>
+          <a href="course-details.html?course=${code}" class="btn">Explore ${code}</a>
+        </div>
+      `;
+      courseGrid.innerHTML += html;
+    });
+  </script>
+
+</body>
+</html>
