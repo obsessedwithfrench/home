@@ -3,73 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Course Details | Obsessed with French</title>
+  <title>Admin Panel | Obsessed with French</title>
   <link rel="stylesheet" href="/obsessedwithfrench/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a2c7cbf6b8.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Poppins', sans-serif;
+      padding: 40px;
+    }
+    .admin-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff5ca2;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .item-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .item-list li {
+      padding: 10px;
+      background-color: #f3f3f3;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 70%;
+      margin-right: 10px;
+    }
+    .logout {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
 </head>
-
 <body>
-  <header id="main-header">
-    <h1>Obsessed with French</h1>
-    <div class="hamburger" id="hamburger">
-      <i class="fas fa-bars"></i>
-    </div>
-    <nav id="nav-menu">
-      <a href="index.html#home">Home</a>
-      <a href="courses.html">Courses</a>
-      <a href="index.html#about">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="career.html">Careers</a>
-    </nav>
-  </header>
-
-  <section class="course-detail">
-    <h2 id="courseTitle">Loading...</h2>
-    <p class="subtitle" id="courseSubtitle"></p>
-
-    <div class="course-info">
-      <p><strong>Mode:</strong> <span id="courseMode"></span></p>
-      <p><strong>Duration:</strong> <span id="courseDuration"></span></p>
-      <p><strong>Price:</strong> <span id="coursePrice"></span></p>
-      <p><strong>Description:</strong></p>
-      <p id="courseDescription"></p>
+  <div class="admin-container">
+    <h2>Admin Dashboard</h2>
+    <div class="tabs">
+      <button onclick="showTab('courses')">📚 Manage Courses</button>
+      <button onclick="showTab('jobs')">💼 Manage Jobs</button>
     </div>
 
-    <div class="enroll-btn">
-      <a href="https://forms.gle/YOUR_GOOGLE_FORM" class="btn" target="_blank" rel="noopener">Enroll via Google Form</a>
+    <div id="courses" class="tab-content active">
+      <h3>Courses</h3>
+      <input type="text" id="courseInput" placeholder="Add new course (e.g., A1 - Beginner)">
+      <button onclick="addItem('course')">Add Course</button>
+      <ul id="courseList" class="item-list"></ul>
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2025 Obsessed with French. All rights reserved.</p>
-  </footer>
+    <div id="jobs" class="tab-content">
+      <h3>Job Listings</h3>
+      <input type="text" id="jobInput" placeholder="Add new job (e.g., French Trainer)">
+      <button onclick="addItem('job')">Add Job</button>
+      <ul id="jobList" class="item-list"></ul>
+    </div>
+
+    <div class="logout">
+      <button onclick="logout()">🔒 Logout</button>
+    </div>
+  </div>
 
   <script>
-    const hamburger = document.getElementById("hamburger");
-    const navMenu = document.getElementById("nav-menu");
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
+    // Admin login check
+    if (!sessionStorage.getItem("admin")) {
+      const password = prompt("Enter Admin Password:");
+      if (password !== "obsessedadmin") {
+        alert("Access Denied!");
+        window.location.href = "/obsessedwithfrench/";
+      } else {
+        sessionStorage.setItem("admin", true);
+      }
+    }
 
-    const queryParams = new URLSearchParams(window.location.search);
-    const courseCode = queryParams.get("course");
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
 
-    const courseDetails = JSON.parse(localStorage.getItem("courseDetails")) || {};
-    const course = courseDetails[courseCode];
+    function addItem(type) {
+      const input = document.getElementById(type + 'Input');
+      const list = document.getElementById(type + 'List');
+      if (input.value.trim() !== "") {
+        const itemText = input.value.trim();
+        const li = document.createElement('li');
+        li.innerHTML = `${itemText} <button onclick="removeItem(this, '${type}')">Remove</button>`;
+        list.appendChild(li);
 
-    if (course) {
-      document.getElementById("courseTitle").textContent = course.title || courseCode;
-      document.getElementById("courseSubtitle").textContent = course.subtitle || "";
-      document.getElementById("courseMode").textContent = course.mode || "";
-      document.getElementById("courseDuration").textContent = course.duration || "";
-      document.getElementById("coursePrice").textContent = course.price || "";
-      document.getElementById("courseDescription").textContent = course.description || "";
-    } else {
-      document.getElementById("courseTitle").textContent = "Course Not Found";
-      document.getElementById("courseDescription").textContent = "We couldn't find the course you're looking for. Please go back to the courses page.";
-      document.querySelector(".course-info").style.display = "none";
-      document.querySelector(".enroll-btn").style.display = "none";
+        let items = JSON.parse(localStorage.getItem(type + 's')) || [];
+        items.push(itemText);
+        localStorage.setItem(type + 's', JSON.stringify(items));
+        input.value = "";
+      }
+    }
+
+    function removeItem(button, type) {
+      const li = button.parentElement;
+      li.remove();
+      let items = JSON.parse(localStorage.getItem(type + 's')) || [];
+      items = items.filter(item => item !== li.textContent.replace("Remove", "").trim());
+      localStorage.setItem(type + 's', JSON.stringify(items));
+    }
+
+    function logout() {
+      sessionStorage.removeItem("admin");
+      location.href = "/obsessedwithfrench/";
+    }
+
+    // Load items from localStorage
+    window.onload = function () {
+      ['course', 'job'].forEach(type => {
+        const list = document.getElementById(type + 'List');
+        const items = JSON.parse(localStorage.getItem(type + 's')) || [];
+        items.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `${item} <button onclick="removeItem(this, '${type}')">Remove</button>`;
+          list.appendChild(li);
+        });
+      });
     }
   </script>
 </body>
